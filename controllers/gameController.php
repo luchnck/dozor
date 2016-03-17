@@ -72,6 +72,12 @@ class gameController extends controller {
 
                 }
             }
+            else {
+                $params = Array(
+                    'message' => 'Игра еще не начата, потерпи немного))',
+                    );
+                dispatcher::redirect("main/view/", $params);
+            }
             
         }
         else 

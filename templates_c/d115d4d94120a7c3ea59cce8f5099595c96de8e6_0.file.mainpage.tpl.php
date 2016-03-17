@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30-dev/44, created on 2016-03-14 13:00:30
+/* Smarty version 3.1.30-dev/44, created on 2016-03-17 12:55:15
   from "D:\documents\projects\dozor\templates\mainpage.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30-dev/44',
-  'unifunc' => 'content_56e6a7de609c98_15824940',
+  'unifunc' => 'content_56ea9b238775a5_89508670',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd115d4d94120a7c3ea59cce8f5099595c96de8e6' => 
     array (
       0 => 'D:\\documents\\projects\\dozor\\templates\\mainpage.tpl',
-      1 => 1457888391,
+      1 => 1458215158,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_56e6a7de609c98_15824940 (Smarty_Internal_Template $_smarty_tpl) {
+function content_56ea9b238775a5_89508670 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <div class="jumbotron">
     <div class="container">

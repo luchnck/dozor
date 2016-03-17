@@ -44,7 +44,11 @@ ob_start();
     
     public function loadGames(){
         $this->games = new games;
-        $query = "SELECT * FROM `games` WHERE `teamslist` in (SELECT t1.id FROM `teamlists` as t1, `teams` as t2 WHERE t2.id in (t1.teamlist))";
+        $query = "SELECT * FROM `games`". 
+                "WHERE ".
+                    "(`teamslist` in (SELECT t1.id FROM `teamlists` as t1, `teams` as t2 WHERE t2.id in (t1.teamlist))) ".
+                "AND ".
+                    "(UNIX_TIMESTAMP(`games`.start) > UNIX_TIMESTAMP())";
                     
         $result = $this->dbConnection->query($query);
         if (isset($result)) {

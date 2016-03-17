@@ -1,5 +1,5 @@
 <?php
-//define('DEBUG','TRUE');
+define('DEBUG','TRUE');
 if (defined('DEBUG')){
     $debugContent = ' ';
 }
@@ -18,6 +18,7 @@ require 'dispatcher.php';
 
 $disp = new dispatcher();
 $disp->initModules();
+$disp->parseParams();
 $disp->run();
 
 if (defined('DEBUG'))

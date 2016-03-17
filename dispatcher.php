@@ -160,16 +160,19 @@ class dispatcher
         return $HTML_array;
     }
     
-    public function __construct(){
-            $this->parseParams();
-        }
-       
     public function returnController(){
             return $this->controller;    
         }
         
-    public static function redirect($url){
+    public static function redirect($url, $params = Array()){
+        if (!empty($params)){
+            $auth = dispatcher::getModule('AuthorisationModule');
+            foreach ($params as $key => $value)
+                $auth->setAuthData($key,$value);
+        }
+        
         header("location:/$url");
+        
         /*Debug*/
        if (defined('DEBUG')){
 	 ob_start(); 
@@ -234,6 +237,14 @@ class dispatcher
                             foreach ($_POST as $key => $value) {
                                 $params[$key] = $_POST[$key];
                             }
+                            
+                            // Получаем параметры сессии
+                            $auth = dispatcher::getModule('AuthorisationModule');
+                            $sessionParams = $auth->getAuthData();
+                            
+                            if (!empty($sessionParams)) 
+                                foreach ( $sessionParams as $key => $value)
+                                    $params[$key] = $value;
                             
                             //$params = dispatcher::getParamsFromSession();
                             

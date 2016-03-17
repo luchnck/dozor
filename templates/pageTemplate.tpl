@@ -5,6 +5,10 @@
 
 {include file="navbar.tpl"}
 
+{if $message}
+    {include file="message.tpl"}
+{/if}
+
 {include file={$mainTpl}}
 
 {include file="footer.tpl"}

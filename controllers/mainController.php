@@ -37,6 +37,7 @@ class mainController extends controller {
         $tpl->assign('teamid',$auth->getAuthData('userid'));
         $tpl->assign('games',$model->games);
         $tpl->assign(dispatcher::renderModules());
+        $tpl->assign(dispatcher::getParams());
         $tpl->assign('mainTpl','mainpage.tpl');
         $tpl->display('pageTemplate.tpl');
         
