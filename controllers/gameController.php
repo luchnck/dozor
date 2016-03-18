@@ -17,7 +17,6 @@ class gameController extends controller {
     
     function __construct(){
        $this->name = "game";
-       $this->gameId = 1;
     }
     
     function viewAction(){
@@ -25,9 +24,8 @@ class gameController extends controller {
         $this->model = $model;
         $auth = dispatcher::getModule('AuthorisationModule');
         //$auth = $model->returnAuthAdaptor();
-        $model->id = $this->gameId;
+        $model->id = $auth->getAuthData('gameid');
         $model->loadGame();
-        $params = dispatcher::getParams();
         
         $tpl = new Smarty;
         $tpl->debugging = false;
@@ -50,7 +48,7 @@ class gameController extends controller {
                         if (empty($model->task))
                             dispatcher::redirect('game/finish/team/'.$model->team->id);
                         
-                        $tpl->assign(dispatcher::renderModules());
+                        $this->setDefaultViewVariables();
                         $tpl->assign('task',$model->task);
                         $tpl->assign('teamid','team/'.$model->team->id);
                         $tpl->assign('mainTpl','gameMainPage.tpl');
@@ -279,7 +277,7 @@ class gameController extends controller {
             
             $tpl->assign('challengeState',$model->challengeState);
             $tpl->assign('teamid',$auth->getAuthData('userid'));
-            $tpl->assign(dispatcher::renderModules());
+            $this->setDefaultViewVariables();
             $tpl->assign('mainTpl','gameFinishPage.tpl');
             $tpl->display('pageTemplate.tpl');
             
@@ -315,11 +313,12 @@ class gameController extends controller {
         $this->model = $model;
         $params = dispatcher::getParams();
         $auth = dispatcher::getModule('AuthorisationModule');
-        
+        $notification = dispatcher::getModule('MessageModule');
         
         //установлен ли параметр номер игры?
         if  ( (!isset($params['game-num'])) || (!$model->setGameId($params['game-num'])) ){
             //попросить определиться с игрой
+            $notification->message("Определись, в какой игре будем учавствовать!");
             dispatcher::redirect('main/view/');
             exit;
         }
@@ -333,8 +332,10 @@ class gameController extends controller {
             $auth->setAuthData('gameid', $model->id, true);
             dispatcher::redirect('game/view/team/'.$auth->getAuthData('userid'));
             exit;
-        } else {
+        } 
+        else {
             //порекомендовать зарегистрироваться в системе
+            $notification->message(" Зарегистрируйся, чтобы где-нибудь по учавствовать");
             dispatcher::redirect('main/view/');
             exit;
         }

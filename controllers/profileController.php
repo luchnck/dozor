@@ -31,7 +31,7 @@ class profileController extends controller {
         $model->loadTeam();
         $model->loadGames();
         
-        $tpl->assign(dispatcher::renderModules());
+        $this->setDefaultViewVariables();
         
         $tpl->assign('games', $model->games);
         $tpl->assign('mainTpl','profile.tpl');

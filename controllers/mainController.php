@@ -30,25 +30,27 @@ class mainController extends controller {
         $model = new mainModel();
         $model->getGames();
         $auth = dispatcher::getModule('AuthorisationModule');
+        $notification = dispatcher::getModule('MessageModule');
         //$auth = $model->returnAuthAdaptor();
         $params = dispatcher::getParams();
         $auth->start();
         
+        //$notification->message("За нас! чтоб все хорошо у нас было!!!");
         $tpl->assign('teamid',$auth->getAuthData('userid'));
         $tpl->assign('games',$model->games);
-        $tpl->assign(dispatcher::renderModules());
-        $tpl->assign(dispatcher::getParams());
+        $this->setDefaultViewVariables();
         $tpl->assign('mainTpl','mainpage.tpl');
         $tpl->display('pageTemplate.tpl');
         
         /*Debug*/
                         if (defined('DEBUG')){
-ob_start();
+                            ob_start();
                             echo 'mainController->viewAction()--><br>';
                             echo 'session = ';
                             //session_start();
                             var_dump($_SESSION);
-                        $GLOBALS["debugContent"].= ob_get_clean();}
+                            $GLOBALS["debugContent"].= ob_get_clean();
+                        }
         /*Debug end*/
         
         exit;
@@ -58,22 +60,27 @@ ob_start();
         $model = new mainModel();
         $auth = dispatcher::getModule('AuthorisationModule');
         $params = dispatcher::getParams();
+        $notification = dispatcher::getModule("MessageModule");
         
-        if ((isset($params['username']))&&(isset($params['password']))){
-            $auth->start();
-            $auth->assignData();
-            $auth->login($model->getTeam($params['username']));
+        if ((!isset($params['username']))&&(!isset($params['password']))){
+            dispatcher::redirect ('main/view/');
+            exit;
+        }
+        
+        $auth->start();
+        $auth->assignData();
+        $auth->login($model->getTeam($params['username']));
 
-                if ($auth->checkAuth()){
-                    dispatcher::redirect ('game/view/team/'.$model->team->id);
-                    exit;
-                }
+        if ($auth->checkAuth()){
+            $notification->message("Авторизация принята!");
+            dispatcher::redirect ('profile/view/');
+            exit;
+        }
+                $notification->message("Необходима авторизация!");
                 dispatcher::redirect ('main/view/');
                 exit;
-                
-        }
-        else
-            dispatcher::redirect ('main/view/');
+               
+            
             /* подключить модель с получением объекта из бд и сравнения с паролем*/
             /* заполнить переменную сессии team параметром teamId из базы если пароли совпадают*/
     }

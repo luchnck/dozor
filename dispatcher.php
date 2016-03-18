@@ -22,6 +22,7 @@ foreach ($include_files as $value) {
 
 
 // необходимо для dispatcher->initModules()
+require_once 'modules/ModuleInterface.php';
 foreach (dispatcher::$defaults['modules'] as $key => $value)
     require_once "modules/".$value;
 
@@ -68,7 +69,8 @@ class dispatcher
                     'profile' => 'view',
                     ),
                 'modules' => Array(
-                    'AuthorisationModule' => 'Authorisation/Authorisation.php',
+                    'AuthorisationModule'   => 'Authorisation/Authorisation.php',
+                    'MessageModule'         => 'Message/Message.php',
                     ),
                 );
         
@@ -121,6 +123,10 @@ class dispatcher
         foreach ($modules as $key => $value)
             dispatcher::$modules[$key] = new $key();
         
+        //заполняем для каждого модуля список зависимостей
+        foreach (dispatcher::$modules as $key => $value)
+            dispatcher::$modules[$key]->setRelationModules(dispatcher::$modules);
+        
         /*Debug*/
            if (defined('DEBUG')){
 	 ob_start(); 
@@ -131,6 +137,7 @@ class dispatcher
          }
         /*Debug end*/
     }
+    
     
     
         /*

@@ -43,4 +43,9 @@ class controller {
         return $this->model;
     }
     
-}
+    public function setDefaultViewVariables(){
+        
+        $this->view->assign(dispatcher::renderModules());
+        $this->view->assign(dispatcher::getParams());
+    }
+ }
