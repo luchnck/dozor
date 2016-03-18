@@ -9,7 +9,7 @@ and open the template in the editor.
 */
 
 body {
-    padding-top: 75px;
+    padding-top: 48px;
     padding-bottom: 48px;
 }
 
@@ -20,3 +20,8 @@ body {
 .panel> .table{
     margin-bottom: 20px;
 }
+
+.notification{
+    margin-top: 2em;
+    margin-bottom: 2em;
+}   

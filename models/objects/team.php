@@ -18,17 +18,25 @@ class team {
     
     public $pass;
     
+    public $email;
+    
+    public $validationErrors;
+    
+    private $validator;
+    
+    private $rightValues;
+    
     public function loadData($array){
         foreach ($array as $key => $value){
             $this->$key = $value;
         }
     /*Debug*/
     if (defined('DEBUG')){
-ob_start();
+        ob_start();
         echo 'team->loadData()--><br>';
         echo 'this = ';
         var_dump($this);
-    $GLOBALS["debugContent"].= ob_get_clean();}
+        $GLOBALS["debugContent"].= ob_get_clean();}
     /*Debug end*/
     }
 }

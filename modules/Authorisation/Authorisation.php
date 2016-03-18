@@ -9,7 +9,9 @@ require_once 'Auth.php';
  * and open the template in the editor.
  */
 
-class AuthorisationModule extends Auth {
+class AuthorisationModule extends Auth implements ModuleInterface{
+    
+    private $relations = Array();
     
     private $model;
     
@@ -38,7 +40,22 @@ class AuthorisationModule extends Auth {
             
     }
     
+    public function getRelationModules() {
+        return $this->relations;
+    }
+    
+    public function setRelationModules($modules = Array()) {
+    
+        if (empty($this->relations) || (empty($modules))) return;
+        
+        foreach ($this->relations as $key => $value)
+            $this->relations[$key] = $modules[$key];
+            
+    }
+    
+    
     function getHtmlData(){
+        
         ob_start();
         
         $this->template->display('auth.tpl');

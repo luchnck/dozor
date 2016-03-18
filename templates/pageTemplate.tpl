@@ -5,8 +5,8 @@
 
 {include file="navbar.tpl"}
 
-{if $message}
-    {include file="message.tpl"}
+{if $MessageModule}
+    {$MessageModule}
 {/if}
 
 {include file={$mainTpl}}
