@@ -50,7 +50,7 @@ class registerController extends Controller {
         $notification = dispatcher::getModule('MessageModule');
         
         $result = $model->loadData(dispatcher::getParams());
-        if (! $result === True)
+        if (is_array($result))
             $notification->message(var_dump($result));
         
         /*Debug*/

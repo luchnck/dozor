@@ -25,6 +25,7 @@ class registerModel extends model{
             'name' => VALIDATE_NUM.VALIDATE_ALPHA,
             'email' => VALIDATE_ALL_EMAILS,
             'pass' => VALIDATE_NUM.VALIDATE_ALPHA.VALIDATE_PUNCTUATION,
+            'verpass' => VALIDATE_NUM.VALIDATE_ALPHA.VALIDATE_PUNCTUATION,
         );
     }
     
@@ -40,8 +41,9 @@ class registerModel extends model{
                 
                     if ( array_key_exists('verpass',$array) ){
                         
-                        if (! ($this->loadPass($key,$value,$array['verpass']) === True) )
-                            $details[$key] = $this->loadPass($key,$value,$array['verpass']);
+                        $loadPass = $this->loadPass($key,$value,$array['verpass']);
+                        if (is_string($loadPass))
+                            $details[$key] = $loadPass;
                         
                     //если не существует верипасс то
                     } else
@@ -51,9 +53,12 @@ class registerModel extends model{
             if ($key === 'email'){
                 if ( !($this->loadEmail($key, $value)) === True )
                          $details[$key] = "Неверно указана электронная почта";
+                continue;
             }
                                                        
-            if ( (array_key_exists($key,$this->validValues)) && ($this->validate($key,$value) === True) )
+            if ( (array_key_exists($key,$this->validValues)) && 
+                    ((!is_string($this->validate($key,$value))) && (!$this->validate($key,$value))) )
+                    
                 $this->team->loadData (Array($key => $value));
             else 
                 $details[$key] = $this->validate($key,$value);
@@ -81,11 +86,14 @@ class registerModel extends model{
      */
     public function validate($key,$value, $verify = null){
         
+        if (empty($value))
+            return "$key нужно заполнить";
+        
         $validator = new Validate();
         if (!array_key_exists($key,$this->validValues))
             return false;
         
-        if (! (!empty($verify))&&($value === $verify) )
+        if ( (!empty($verify))&&($value != $verify) )
             return "значение $key не совпадает с $verify";
         
         if ( $validator->string($value,Array('format' => $this->validValues[$key])) )
@@ -95,22 +103,25 @@ class registerModel extends model{
     }
     
     public function loadPass($key,$value,$verify){
+        $result = $this->validate($key,$value,$verify);
+        
         //если пароли совпадают
-        if ($this->validate($key,$value,$verify) === True){
-                            
+        if ( (!is_string($result)) && (!$result) ){
+            
+            $isvalid = $this->validate($key,$value);
             // если строка соответствует требованиям
-            if ($this->validate($key,$value) === True){
+            if ( (!is_string($isvalid)) && (!$isvalid) ){
                                 
                 $this->team->loadData(Array($key,$value));
                 return True;
                                 
             // если строка не соответствует требованиям
             } else
-                return $this->validate($key,$value);
+                return $isvalid;
                             
         //если пароли не совпадают    
         } else
-            return $this->validate($key,$value,$array['verpass']);
+            return $result;
     }
     
     public function loadEmail($key,$value){
