@@ -259,7 +259,8 @@ class dispatcher
                             
                             // Получили в $params переменные сессии
                             
-                    } catch (Exception $e) {
+                    } 
+                    catch (Exception $e) {
                             $controller = 'err404';
                             $action = 'view';
                     }

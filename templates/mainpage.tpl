@@ -12,7 +12,7 @@
         <h1>Привет, дорогой друг!</h1>
         <p>Этот сайт несет счастье и радость миролюбивым жителям Новокуйбышевска, 
             если ты хочешь стать немного счастливее Войди или 
-            <button type="button" onclick="document.location.href='register/view/';" class="btn btn-success btn-lg">Зарегистрируйся</button> 
+            <button type="button" onclick="document.location.href='/register/view/';" class="btn btn-success btn-lg">Зарегистрируйся</button> 
             и будет тебе счастье!</p>
     </div>
     {/if}

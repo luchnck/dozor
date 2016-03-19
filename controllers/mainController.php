@@ -6,8 +6,6 @@
  * and open the template in the editor.
  */
 
-require_once 'Auth.php';
-
 /**
  * Description of gameController
  *

@@ -14,6 +14,8 @@
 class team {
     public $name;
     
+    public $email;
+    
     public $id;
     
     public $pass;

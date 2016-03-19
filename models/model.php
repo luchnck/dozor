@@ -6,6 +6,7 @@
  * and open the template in the editor.
  */
 require_once 'MDB2.php';
+require_once 'Validate.php';
 /**
  * Description of model
  *
