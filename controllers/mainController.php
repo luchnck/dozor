@@ -35,8 +35,11 @@ class mainController extends controller {
         $params = dispatcher::getParams();
         $auth->start();
         
-        //$notification->message("За нас! чтоб все хорошо у нас было!!!");
+        
+        $tpl->assign('checkauth',$auth->checkAuth());
+        $tpl->assign('username',$auth->getUsername());
         $tpl->assign('teamid',$auth->getAuthData('userid'));
+        
         $tpl->assign('games',$model->games);
         $this->setDefaultViewVariables();
         $tpl->assign('mainTpl','mainpage.tpl');

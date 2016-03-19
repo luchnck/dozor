@@ -52,13 +52,14 @@ class dispatcher
     public
         static $defaults = 
             Array(
-                'routes' => Array('main','profile','task','err404','game'),
+                'routes' => Array('main','profile','task','err404','game','register'),
                 'actions' => Array(
                     'main' => Array('view','edit','delete','auth','logout'),
                     'profile' => Array('view'),
                     'err404' => Array('view'),
                     'task' => Array('view','insert','edit','delete','list','load','refresh'),
                     'game' => Array('view','checktask','canceltask','finish','go'),
+                    'register' => Array('view','go','finish','fail','activate'),
                 ),
                 'defaultController' => 'main',
                 'defaultActions' => Array(
@@ -67,6 +68,7 @@ class dispatcher
                     'task' => 'view',
                     'game' => 'view',
                     'profile' => 'view',
+                    'register' => 'view',
                     ),
                 'modules' => Array(
                     'AuthorisationModule'   => 'Authorisation/Authorisation.php',
