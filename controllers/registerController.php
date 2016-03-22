@@ -50,8 +50,17 @@ class registerController extends Controller {
         $notification = dispatcher::getModule('MessageModule');
         
         $result = $model->loadData(dispatcher::getParams());
-        if (is_array($result))
+        if (is_array($result)){
             $notification->message(var_dump($result));
+            //dispatcher::redirect("register/view");
+            //exit;
+        }
+        
+        /*if (!$model->writeData()){
+            $notification->message( "Проблемы при создании записи в базе!<br>"
+                                    ."Свяжитесь с администратором сайта!");
+            dispatcher::redirect('register/view');
+        }*/
         
         /*Debug*/
                         if (defined('DEBUG')){
@@ -63,7 +72,14 @@ class registerController extends Controller {
                             $GLOBALS["debugContent"].= ob_get_clean();
                         }
         /*Debug end*/
-                        
+        /*                
+        $notification->message( "Регистрация выполнена успешно!<br>"
+                                    ."Последний шаг - проверьте почту и перейдите по ссылке в письме<br>"
+                                    ." Это активирует вашу запись, удачи!");
+        dispatcher::redirect('main/view');
+        exit;
+         * 
+         */
                         $tpl = new Smarty;
                         $tpl->debugging = false;
                         $tpl->caching = false;

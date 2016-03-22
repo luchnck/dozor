@@ -56,12 +56,12 @@ class registerModel extends model{
                 continue;
             }
                                                        
-            if ( (array_key_exists($key,$this->validValues)) && 
-                    ((!is_string($this->validate($key,$value))) && (!$this->validate($key,$value))) )
+            if  (array_key_exists($key,$this->validValues)) 
+                if ( ((!is_string($this->validate($key,$value))) && (!$this->validate($key,$value))) ){
                     
-                $this->team->loadData (Array($key => $value));
-            else 
-                $details[$key] = $this->validate($key,$value);
+                    $this->team->loadData (Array($key => $value));
+                } else 
+                    $details[$key] = $this->validate($key,$value);
         }
     /*Debug*/
     if (defined('DEBUG')){
@@ -134,4 +134,25 @@ class registerModel extends model{
         return false;
     }
     
+    public function writeData(){
+        if (!isset($team))
+            return;
+        $query = 'INSERT INTO '
+                . '`teams` (`name`, `pass`, `email`) '
+                . 'VALUES ("'.$this->team->name.'","'.md5($this->team->pass).'","'.$this->team->email.'");';
+        $result = $this->dbConnection->query($query);
+        
+        /*Debug*/
+    if (defined('DEBUG')){
+        ob_start();
+        echo " registerModel->writeData()-->query = $query";
+        var_dump($result);
+        $GLOBALS["debugContent"].= ob_get_clean();}
+    /*Debug end*/
+        
+        if (isset($result))
+                return TRUE;
+            else
+                return false;
+    }
 }
