@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Мар 13 2016 г., 21:40
+-- Время создания: Мар 22 2016 г., 07:02
 -- Версия сервера: 5.5.39
 -- Версия PHP: 5.4.31
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- База данных: `dozor`
 --
+CREATE DATABASE IF NOT EXISTS `dozor` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+USE `dozor`;
 
 -- --------------------------------------------------------
 
@@ -36,11 +38,6 @@ CREATE TABLE IF NOT EXISTS `games` (
   `end` datetime NOT NULL
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
---
--- Очистить таблицу перед добавлением данных `games`
---
-
-TRUNCATE TABLE `games`;
 --
 -- Дамп данных таблицы `games`
 --
@@ -61,11 +58,6 @@ CREATE TABLE IF NOT EXISTS `tasklists` (
   `tasklist` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
---
--- Очистить таблицу перед добавлением данных `tasklists`
---
-
-TRUNCATE TABLE `tasklists`;
 --
 -- Дамп данных таблицы `tasklists`
 --
@@ -89,11 +81,6 @@ CREATE TABLE IF NOT EXISTS `tasks` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
 
 --
--- Очистить таблицу перед добавлением данных `tasks`
---
-
-TRUNCATE TABLE `tasks`;
---
 -- Дамп данных таблицы `tasks`
 --
 
@@ -115,11 +102,6 @@ CREATE TABLE IF NOT EXISTS `teamlists` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='teams_json содержит id команд' AUTO_INCREMENT=2 ;
 
 --
--- Очистить таблицу перед добавлением данных `teamlists`
---
-
-TRUNCATE TABLE `teamlists`;
---
 -- Дамп данных таблицы `teamlists`
 --
 
@@ -136,22 +118,18 @@ DROP TABLE IF EXISTS `teams`;
 CREATE TABLE IF NOT EXISTS `teams` (
 `id` int(11) NOT NULL,
   `name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
-  `pass` varchar(32) COLLATE utf8_unicode_ci NOT NULL
+  `pass` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `email` char(128) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
---
--- Очистить таблицу перед добавлением данных `teams`
---
-
-TRUNCATE TABLE `teams`;
 --
 -- Дамп данных таблицы `teams`
 --
 
-INSERT INTO `teams` (`id`, `name`, `pass`) VALUES
-(1, 'CommandA', '1a1dc91c907325c69271ddf0c944bc72'),
-(2, 'CommandB', '1a1dc91c907325c69271ddf0c944bc72'),
-(3, 'Команда C', '');
+INSERT INTO `teams` (`id`, `name`, `pass`, `email`) VALUES
+(1, 'CommandA', '1a1dc91c907325c69271ddf0c944bc72', NULL),
+(2, 'CommandB', '1a1dc91c907325c69271ddf0c944bc72', NULL),
+(3, 'Команда C', '', NULL);
 
 -- --------------------------------------------------------
 
@@ -169,11 +147,6 @@ CREATE TABLE IF NOT EXISTS `tmpgamedata` (
   `checkpoint` datetime NOT NULL
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
---
--- Очистить таблицу перед добавлением данных `tmpgamedata`
---
-
-TRUNCATE TABLE `tmpgamedata`;
 --
 -- Дамп данных таблицы `tmpgamedata`
 --
@@ -215,7 +188,7 @@ ALTER TABLE `teamlists`
 -- Indexes for table `teams`
 --
 ALTER TABLE `teams`
- ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `email` (`email`);
 
 --
 -- Indexes for table `tmpgamedata`
