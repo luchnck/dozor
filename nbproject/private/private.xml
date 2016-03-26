@@ -3,20 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/documents/projects/dozor/templates/pageTemplate.tpl</file>
-            <file>file:/D:/documents/projects/dozor/index.php</file>
-            <file>file:/D:/documents/projects/dozor/controllers/controller.php</file>
-            <file>file:/D:/documents/projects/dozor/models/profileModel.php</file>
-            <file>file:/D:/documents/projects/dozor/dispatcher.php</file>
-            <file>file:/D:/documents/projects/dozor/modules/Message/Message.php</file>
-            <file>file:/D:/documents/projects/dozor/templates/auth.tpl</file>
-            <file>file:/D:/documents/projects/dozor/models/objects/team.php</file>
-            <file>file:/D:/documents/projects/dozor/templates/mainpage.tpl</file>
-            <file>file:/D:/documents/projects/dozor/controllers/mainController.php</file>
-            <file>file:/D:/documents/projects/dozor/templates/message.tpl</file>
-            <file>file:/D:/documents/projects/dozor/templates/navbar.tpl</file>
-            <file>file:/D:/documents/projects/dozor/controllers/gameController.php</file>
-            <file>file:/D:/documents/projects/dozor/controllers/profileController.php</file>
+            <file>file:/Z:/home/dozor/dispatcher.php</file>
+            <file>file:/Z:/home/dozor/models/taskModel.php</file>
+            <file>file:/Z:/home/dozor/templates/mainpage.tpl</file>
+            <file>file:/Z:/home/dozor/models/gameModel.php</file>
+            <file>file:/Z:/home/dozor/controllers/mainController.php</file>
+            <file>file:/Z:/home/dozor/tests/helpers/validatorTest.php</file>
+            <file>file:/Z:/home/dozor/models/objects/game.php</file>
+            <file>file:/Z:/home/dozor/models/objects/team.php</file>
+            <file>file:/Z:/home/dozor/index.php</file>
+            <file>file:/Z:/home/dozor/models/model.php</file>
+            <file>file:/Z:/home/dozor/controllers/controller.php</file>
         </group>
     </open-files>
 </project-private>
