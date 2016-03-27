@@ -56,7 +56,7 @@ class validatorTest extends PHPUnit_Framework_TestCase
                 'notEmpty' =>Array('name','pass','email'),
             
                 'equals' => Array(
-                                  'pass' => '12345',
+                                  'pass' => '123456!;',
                                 ),
                 );
         
@@ -77,8 +77,26 @@ class validatorTest extends PHPUnit_Framework_TestCase
      */
     public function testValidate()
     {
+        /*login*/
        $this->assertTrue($this->object->validate('name','georgy12345'));
        $this->assertFalse($this->object->validate('name','georgy!12345'));
-       $this->assertTrue($this->object->validate('pass','12345'));
+       $this->assertFalse($this->object->validate('name','Жора'));
+       
+       /*pass*/
+       $this->assertTrue($this->object->validate('pass','123456!;'));
+       $this->assertFalse($this->object->validate('pass','1234'));
+       $this->assertFalse($this->object->validate('pass','1234'));
+       
+       /*Проверка требует публичного дескриптора*/
+       $this->assertFalse($this->object->checkNotEmpty('pass',''));
+       
+       /*email*/
+       $this->assertTrue($this->object->validate('email','luchnck@yandex.ru'));
+       $this->assertFalse($this->object->validate('email','luchnckyandex.ru'));
+       $this->assertFalse($this->object->validate('email',''));
+       $this->assertFalse($this->object->validate('email','михаил@yandex.ru'));
+       $this->assertFalse($this->object->validate('email','luchnckyandex'));
+       $this->assertFalse($this->object->validate('email','$.("#hello").setParams();luchnck@yandex.ru'));
+       
     }
 }

@@ -3,16 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Z:/home/dozor/dispatcher.php</file>
             <file>file:/Z:/home/dozor/models/taskModel.php</file>
-            <file>file:/Z:/home/dozor/templates/mainpage.tpl</file>
-            <file>file:/Z:/home/dozor/models/gameModel.php</file>
             <file>file:/Z:/home/dozor/controllers/mainController.php</file>
+            <file>file:/Z:/home/dozor/models/gameModel.php</file>
+            <file>file:/Z:/home/dozor/tests/bootstrap.php</file>
             <file>file:/Z:/home/dozor/tests/helpers/validatorTest.php</file>
+            <file>file:/Z:/home/dozor/index.php</file>
+            <file>file:/Z:/home/dozor/helpers/validator.php</file>
+            <file>file:/Z:/home/dozor/dispatcher.php</file>
+            <file>file:/Z:/home/dozor/templates/mainpage.tpl</file>
             <file>file:/Z:/home/dozor/models/objects/game.php</file>
             <file>file:/Z:/home/dozor/models/objects/team.php</file>
-            <file>file:/Z:/home/dozor/index.php</file>
             <file>file:/Z:/home/dozor/models/model.php</file>
+            <file>file:/Z:/home/dozor/tests/configuration.xml</file>
             <file>file:/Z:/home/dozor/controllers/controller.php</file>
         </group>
     </open-files>

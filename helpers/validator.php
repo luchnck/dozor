@@ -71,15 +71,15 @@ class validator {
             if ($this->validate->$params['type']($value, $params['options']))
                 return true;
             else {
-                $this->validationInfo .= "в $key используются символы не из ".$params['options']['format']; 
+                $this->validationInfo .= "в $key используются неразрешенные символы"; 
                 return false;
             }
         } else
             return true;
     }
     
-    private function checkNotEmpty($key,$value){
-        if (array_key_exists($key, $this->notEmpty)){
+    public function checkNotEmpty($key,$value){
+        if (in_array($key, $this->notEmpty)){
                         
             if (!empty($value))
                 return true;
@@ -95,10 +95,10 @@ class validator {
         if (array_key_exists($key, $this->equals)){
             $params = $this->equals[$key];
             
-            if ($value === $params[$key])
+            if ($value === $params)
                 return true;
             else {
-                $this->validationInfo .= "$key не совпадает c условиями $params[$key]"; 
+                $this->validationInfo .= "$key не совпадает c условиями $params"; 
                 return false;
             }
         } else
