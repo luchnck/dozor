@@ -7,6 +7,7 @@
  */
 require_once 'MDB2.php';
 require_once 'Validate.php';
+require_once '/helpers/validator.php';
 /**
  * Description of model
  *

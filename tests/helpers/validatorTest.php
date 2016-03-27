@@ -38,7 +38,7 @@ class validatorTest extends PHPUnit_Framework_TestCase
                                               'options' => Array(
                                                     'check_domain' => 'false',
                                                     'fullTLDValidation' => 'false',
-                                                    'use_rfc822' => 'true',
+                                                    'use_rfc822' => 'false',
                                                     'VALIDATE_GTLD_EMAILS' => 'true',
                                                     'VALIDATE_CCTLD_EMAILS' => 'true',
                                                     'VALIDATE_ITLD_EMAILS' => 'true',
@@ -91,7 +91,7 @@ class validatorTest extends PHPUnit_Framework_TestCase
        $this->assertFalse($this->object->checkNotEmpty('pass',''));
        
        /*email*/
-       $this->assertTrue($this->object->validate('email','luchnck@yandex.ru'));
+       $this->assertTrue($this->object->validate('email','maxon@overwrite.com'));
        $this->assertFalse($this->object->validate('email','luchnckyandex.ru'));
        $this->assertFalse($this->object->validate('email',''));
        $this->assertFalse($this->object->validate('email','михаил@yandex.ru'));

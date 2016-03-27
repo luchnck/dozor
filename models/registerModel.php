@@ -13,69 +13,21 @@
  */
 class registerModel extends model{
     
-    private $validator;
-    
-    private $validValues;
-    
     private $team;
-    
-    public function __construct() {
-        parent::__construct();
-        $this->validValues = Array(
-            'name' => VALIDATE_NUM.VALIDATE_ALPHA,
-            'email' => VALIDATE_ALL_EMAILS,
-            'pass' => VALIDATE_NUM.VALIDATE_ALPHA.VALIDATE_PUNCTUATION,
-            'verpass' => VALIDATE_NUM.VALIDATE_ALPHA.VALIDATE_PUNCTUATION,
-        );
-    }
     
     public function loadData($array){
         
         $this->team = new team();
         $details = '';
         
-        foreach ($array as $key => $value){
+        $this->team->loadData($array);
+        
+        /* Проверка введенных данных на правильность*/
+        if ($this->team->validate())
+            return true;
+        else
+            return $this->team->validationErrors;
             
-            //если ключ пасс и существует верипасс то
-            if ($key === 'pass') { 
-                
-                    if ( array_key_exists('verpass',$array) ){
-                        
-                        $loadPass = $this->loadPass($key,$value,$array['verpass']);
-                        if (is_string($loadPass))
-                            $details[$key] = $loadPass;
-                        
-                    //если не существует верипасс то
-                    } else
-                        $details[$key] = $this->validate($key,$value,'verpass');
-            }
-            
-            if ($key === 'email'){
-                if ( !($this->loadEmail($key, $value)) === True )
-                         $details[$key] = "Неверно указана электронная почта";
-                continue;
-            }
-                                                       
-            if  (array_key_exists($key,$this->validValues)) 
-                if ( ((!is_string($this->validate($key,$value))) && (!$this->validate($key,$value))) ){
-                    
-                    $this->team->loadData (Array($key => $value));
-                } else 
-                    $details[$key] = $this->validate($key,$value);
-        }
-    /*Debug*/
-    if (defined('DEBUG')){
-        ob_start();
-        echo 'registerModel->loadData()--><br>';
-        echo 'this = ';
-        var_dump($this);
-        $GLOBALS["debugContent"].= ob_get_clean();}
-    /*Debug end*/
-    
-        if ($details === Array())
-            return True;
-        else 
-            return $details;
     }
     
     /*
@@ -135,8 +87,9 @@ class registerModel extends model{
     }
     
     public function writeData(){
-        if (!isset($team))
+        if (!isset($this->team))
             return;
+        
         $query = 'INSERT INTO '
                 . '`teams` (`name`, `pass`, `email`) '
                 . 'VALUES ("'.$this->team->name.'","'.md5($this->team->pass).'","'.$this->team->email.'");';

@@ -47,12 +47,7 @@ class team {
                                 'email' => Array(
                                               'type' => 'email',
                                               'options' => Array(
-                                                    'check_domain' => 'false',
-                                                    'fullTLDValidation' => 'false',
-                                                    'use_rfc822' => 'true',
-                                                    'VALIDATE_GTLD_EMAILS' => 'true',
-                                                    'VALIDATE_CCTLD_EMAILS' => 'true',
-                                                    'VALIDATE_ITLD_EMAILS' => 'true',
+                                                    
                                                     ),
                                           ),
                                 'pass'  => Array(

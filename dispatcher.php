@@ -180,16 +180,19 @@ class dispatcher
             foreach ($params as $key => $value)
                 $auth->setAuthData($key,$value);
         }
-        
-        header("location:/$url");
-        
+               
         /*Debug*/
        if (defined('DEBUG')){
 	 ob_start(); 
             echo 'dispatcher->redirect()--><br>';
             echo 'redirecting to '.$url.'<br>';
         $GLOBALS["debugContent"] .= ob_get_clean();
-}
+        }
+        
+        else
+            
+            header("location:/$url");
+        
         /*Debug end*/
         exit;
     }    
