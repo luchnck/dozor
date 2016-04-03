@@ -108,4 +108,15 @@ class registerModel extends model{
             else
                 return false;
     }
+    
+    public function isTeamCreated(){
+        $query = 'SELECT name FROM `teams` WHERE name = "'.$this->team->name.'";';
+        $result = $this->dbConnection->query($query);
+         if (isset($result)){
+                $row = $result->fetchall(PDO::FETCH_NAMED);
+                if (isset($row[0]))
+                    return true;
+         }
+        return false;
+    }
 }

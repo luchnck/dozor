@@ -57,6 +57,13 @@ class registerController extends Controller {
             exit;
         }
         
+        if ($this->model->isTeamCreated()){
+            $notification->message( "Такой пользователь уже существует!<br>"
+                                    ."Обзовитесь по-другому!");
+            dispatcher::redirect('register/view');
+        }
+            
+        
         if (!$model->writeData()){
             $notification->message( "Проблемы при создании записи в базе!<br>"
                                     ."Свяжитесь с администратором сайта!");
