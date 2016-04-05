@@ -23,7 +23,7 @@ class gameController extends controller {
         $model = $this->getModel();
         $this->model = $model;
         $auth = dispatcher::getModule('AuthorisationModule');
-        //$auth = $model->returnAuthAdaptor();
+        $params = dispatcher::getParams();
         $model->id = $auth->getAuthData('gameid');
         $model->loadGame();
         
@@ -102,14 +102,13 @@ class gameController extends controller {
      *      5.Иначе возвращаем ответ о неверном результате
      */
     function checkTaskAction(){
+        $auth = dispatcher::getModule('AuthorisationModule');
         $params = dispatcher::getParams();
         $model = $this->getModel();
         $this->model = $model;
-        $model->id = $this->gameId;
+        $model->id = $auth->getAuthData('gameid');
         $model->loadGame();
-        $auth = dispatcher::getModule('AuthorisationModule');
-        //$auth = $model->returnAuthAdaptor();
-        
+                
         $auth->start();
         
         if ($auth->checkAuth()){
@@ -162,14 +161,13 @@ class gameController extends controller {
  *  не проверяем пароль, изменяем очередь и прибавляем штраф 
  */
     function cancelTaskAction(){
+        $auth = dispatcher::getModule('AuthorisationModule');
         $params = dispatcher::getParams();
         $model = $this->getModel();
         $this->model = $model;
-        $model->id = $this->gameId;
+        $model->id = $auth->getAuthData('gameid');
         $model->loadGame();
-        $auth = dispatcher::getModule('AuthorisationModule');
-        //$auth = $model->returnAuthAdaptor();
-        
+               
         $auth->start();
         
         if ($auth->checkAuth()){
@@ -220,14 +218,13 @@ class gameController extends controller {
      *      \команда\количество очков\статус(в игре, закончила)
      */    
     function finishAction(){
+        $auth = dispatcher::getModule('AuthorisationModule');
         $model = $this->getModel();
         $this->model = $model;
-        $model->id = $this->gameId;
+        $model->id = $auth->getAuthData('gameid');
         $model->loadGame();
         $params = dispatcher::getParams();
-        $auth = dispatcher::getModule('AuthorisationModule');
-        //$auth = $model->returnAuthAdaptor();
-        
+               
         $auth->start();
         
         if ($auth->checkAuth()){

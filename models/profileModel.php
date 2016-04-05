@@ -46,9 +46,15 @@ ob_start();
         $this->games = new games;
         $query = "SELECT * FROM `games`". 
                 "WHERE ".
-                    "(`teamslist` in (SELECT t1.id FROM `teamlists` as t1, `teams` as t2 WHERE t2.id in (t1.teamlist))) ".
-                "AND ".
-                    "(UNIX_TIMESTAMP(`games`.start) > UNIX_TIMESTAMP())";
+                    "(".
+                        "(`teamslist` in (SELECT t1.id FROM `teamlists` as t1, `teams` as t2 WHERE t2.id in (t1.teamlist))) ".
+                    "AND (".
+                            "(UNIX_TIMESTAMP(`games`.start) > UNIX_TIMESTAMP())".
+                        "OR ".
+                            "(UNIX_TIMESTAMP(`games`.end) > UNIX_TIMESTAMP()) ".
+                        ")".
+                    ")".
+                "ORDER BY `games`.start;";
                     
         $result = $this->dbConnection->query($query);
         if (isset($result)) {
@@ -57,7 +63,7 @@ ob_start();
         if (isset($row[0])){
             /*Debug*/
             if (defined('DEBUG')){
-ob_start();
+            ob_start();
                 echo 'mainModel->getGames()--><br>';
                 echo 'query = ';
                 var_dump($query);
@@ -70,7 +76,7 @@ ob_start();
             
             /*Debug*/
             if (defined('DEBUG')){
-ob_start();
+            ob_start();
                 echo 'profileModel->loadGames()--><br>';
                 echo 'games = ';
                 var_dump($this->games);
