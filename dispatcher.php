@@ -7,11 +7,12 @@
  */
 
 // необходимо для dispatcher->initController()
+require_once "controllers/controller.php";
 $include_files = scandir('controllers');
 foreach ($include_files as $value) {
     preg_match('/php/', $value, $matches);
     if (isset($matches[0])){
-        include_once "controllers/$value";
+        require_once "controllers/$value";
         if (defined('DEBUG')){
             ob_start();
             echo "<br> file $value are connected<br>";
@@ -52,7 +53,7 @@ class dispatcher
     public
         static $defaults = 
             Array(
-                'routes' => Array('main','profile','task','err404','game','register'),
+                'routes' => Array('main','profile','task','err404','game','register','admin'),
                 'actions' => Array(
                     'main' => Array('view','edit','delete','auth','logout'),
                     'profile' => Array('view'),
@@ -60,6 +61,7 @@ class dispatcher
                     'task' => Array('view','insert','edit','delete','list','load','refresh'),
                     'game' => Array('view','checktask','canceltask','finish','go'),
                     'register' => Array('view','go','finish','fail','activate'),
+                    'admin' => Array('view','resetTestData'),
                 ),
                 'defaultController' => 'main',
                 'defaultActions' => Array(
@@ -69,6 +71,7 @@ class dispatcher
                     'game' => 'view',
                     'profile' => 'view',
                     'register' => 'view',
+                    'admin' => 'view',
                     ),
                 'modules' => Array(
                     'AuthorisationModule'   => 'Authorisation/Authorisation.php',

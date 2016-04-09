@@ -4,7 +4,6 @@
          
         <div class="text-center col-md-8 col-xs-8 col-lg-8 panel"> 
         <h1 class="caption">Время напрячь мозги</h1>
-        <p>Не отвлекайся!</p>
         <p>Внимание вопрос:</p>
         <form id="checkTask" method="post" action="/game/checktask/{$teamid}">
             <div class="container">{$task->title}</div>

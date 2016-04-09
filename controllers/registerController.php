@@ -11,7 +11,7 @@
  *
  * @author Admin
  */
-class registerController extends Controller {
+class registerController extends controller {
     
     function __construct(){
         $this->name = 'register';

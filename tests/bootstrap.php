@@ -11,6 +11,8 @@
  */
 // TODO: check include path
 ini_set('include_path', ini_get('include_path').PATH_SEPARATOR.'D:\xampp\php\pear'.PATH_SEPARATOR.'D:\xampp\php'.PATH_SEPARATOR.'z:\home\dozor');
+$_SERVER['DOCUMENT_ROOT'] = "z:\home\dozor\\";
+
 
 require_once 'controllers/controller.php';
 require_once 'controllers/gameController.php';

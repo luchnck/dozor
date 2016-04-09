@@ -4,18 +4,17 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/Z:/home/dozor/templates/gameMainPage.tpl</file>
-            <file>file:/Z:/home/dozor/models/registerModel.php</file>
-            <file>file:/Z:/home/dozor/models/gameModel.php</file>
+            <file>file:/Z:/home/dozor/dispatcher.php</file>
             <file>file:/Z:/home/dozor/tests/bootstrap.php</file>
-            <file>file:/Z:/home/dozor/controllers/mainController.php</file>
-            <file>file:/Z:/home/dozor/tests/helpers/validatorTest.php</file>
+            <file>file:/Z:/home/dozor/tests/models/adminModelTest.php</file>
+            <file>file:/Z:/home/dozor/models/gameModel.php</file>
+            <file>file:/Z:/home/dozor/templates/gameFinishPage.tpl</file>
+            <file>file:/Z:/home/dozor/controllers/adminController.php</file>
+            <file>file:/Z:/home/dozor/models/adminModel.php</file>
             <file>file:/Z:/home/dozor/index.php</file>
-            <file>file:/Z:/home/dozor/helpers/validator.php</file>
-            <file>file:/Z:/home/dozor/controllers/gameController.php</file>
+            <file>file:/Z:/home/dozor/templates/admin.tpl</file>
+            <file>file:/Z:/home/dozor/models/model.php</file>
             <file>file:/Z:/home/dozor/controllers/controller.php</file>
-            <file>file:/Z:/home/dozor/tests/controllers/gameControllerTest.php</file>
-            <file>file:/Z:/home/dozor/controllers/registerController.php</file>
-            <file>file:/Z:/home/dozor/tests/models/registerModelTest.php</file>
         </group>
     </open-files>
 </project-private>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30-dev/44, created on 2016-04-08 22:54:23
+/* Smarty version 3.1.30-dev/44, created on 2016-04-08 23:04:39
   from "Z:\home\dozor\templates\gameMainPage.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30-dev/44',
-  'unifunc' => 'content_5707fe5f5b8d87_81700349',
+  'unifunc' => 'content_570800c7501bd3_58888665',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '95951a3b7c8e4860d8161bf55a56910b5fd65770' => 
     array (
       0 => 'Z:\\home\\dozor\\templates\\gameMainPage.tpl',
-      1 => 1460141658,
+      1 => 1460142275,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5707fe5f5b8d87_81700349 (Smarty_Internal_Template $_smarty_tpl) {
+function content_570800c7501bd3_58888665 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <div class="jumbotron">
     <div class="container">
@@ -28,7 +28,6 @@ function content_5707fe5f5b8d87_81700349 (Smarty_Internal_Template $_smarty_tpl)
          
         <div class="text-center col-md-8 col-xs-8 col-lg-8 panel"> 
         <h1 class="caption">Время напрячь мозги</h1>
-        <p>Не отвлекайся!</p>
         <p>Внимание вопрос:</p>
         <form id="checkTask" method="post" action="/game/checktask/<?php echo $_smarty_tpl->tpl_vars['teamid']->value;?>
 ">

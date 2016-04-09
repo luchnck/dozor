@@ -5,13 +5,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-require_once $_SERVER["DOCUMENT_ROOT"]."/models/model.php";
+require_once "/models/model.php";
 
-$include_files = scandir($_SERVER["DOCUMENT_ROOT"]."/models");
+$include_files = scandir($_SERVER['DOCUMENT_ROOT']."/models");
 foreach ($include_files as $value) {
     preg_match('/\.php$/', $value, $matches);
     if (isset($matches[0])){
-        require_once $_SERVER["DOCUMENT_ROOT"]."/models/$value";
+        require_once "/models/$value";
         if (defined('DEBUG')){
             ob_start();
             echo "<br> file $value are connected<br>";
