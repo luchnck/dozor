@@ -42,6 +42,7 @@ class adminModelTest extends PHPUnit_Framework_TestCase {
      */
     public function testExecSQL() {
         // Remove the following lines when you implement this test.
+        //
         //$this->object->execSQL("\sqlBase\dozor.sql");
     }
 

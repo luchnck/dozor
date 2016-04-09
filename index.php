@@ -8,7 +8,9 @@ if (defined('DEBUG')){
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-//echo "loadded index.php";
+ini_set('include_path', ini_get('include_path').PATH_SEPARATOR.$_SERVER['DOCUMENT_ROOT'].'/include/pear/');
+
+
 require 'smarty-master/libs/Smarty.class.php';
 require 'dispatcher.php';
 //require 'HTTP/Session2.php';
